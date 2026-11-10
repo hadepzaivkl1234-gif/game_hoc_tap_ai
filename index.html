@@ -115,9 +115,11 @@
       </p>
       <div class="bg-black/40 p-6 rounded-lg border border-slate-800 text-center max-w-lg mx-auto">
         <label for="m1-input" class="block text-sm font-semibold text-slate-300 mb-2">Nhập khối lượng NaOH nguyên chất cần dùng (g):</label>
-        <input type="number" id="m1-input" placeholder="Ví dụ: 120" step="0.1" class="bg-slate-950 border-2 border-cyan-500 text-cyan-300 text-center text-xl font-bold p-3 rounded-lg w-48 mb-4 outline-none focus:ring-2 focus:ring-cyan-400">
+        <input type="number" id="m1-input" placeholder="Ví dụ: 120" step="0.1" 
+               onkeydown="if(event.key === 'Enter') submitStage1()"
+               class="bg-slate-950 border-2 border-cyan-500 text-cyan-300 text-center text-xl font-bold p-3 rounded-lg w-48 mb-4 outline-none focus:ring-2 focus:ring-cyan-400">
         <br>
-        <button onclick="submitStage1()" class="bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-3 rounded-lg font-bold transition shadow-lg w-full">
+        <button onclick="submitStage1()" class="bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-3 rounded-lg font-bold transition shadow-lg w-full cursor-pointer">
           XẢ DUNG DỊCH NaOH
         </button>
       </div>
@@ -136,7 +138,7 @@
           <span id="m2-slider-val" class="text-2xl font-bold text-cyan-400">5.0</span> kg (lít)
         </div>
         <input type="range" id="m2-slider" min="0" max="20" step="0.1" value="5" class="w-full accent-cyan-400 mb-6 cursor-pointer" oninput="updateM2Slider(this.value)">
-        <button onclick="submitStage2()" class="bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-3 rounded-lg font-bold transition shadow-lg w-full">
+        <button onclick="submitStage2()" class="bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-3 rounded-lg font-bold transition shadow-lg w-full cursor-pointer">
           BƠM LÀM MÁT
         </button>
       </div>
@@ -151,7 +153,7 @@
       <div class="bg-black/40 p-6 rounded-lg border border-slate-800 text-center max-w-lg mx-auto">
         <div class="text-3xl font-mono text-cyan-400 font-bold mb-4" id="m3-timer-display">00.0s</div>
         <div class="flex gap-4 justify-center">
-          <button id="m3-start-btn" onclick="startM3Torch()" class="bg-amber-600 hover:bg-amber-500 text-white px-5 py-2.5 rounded-lg font-bold transition shadow-lg">
+          <button id="m3-start-btn" onclick="startM3Torch()" class="bg-amber-600 hover:bg-amber-500 text-white px-5 py-2.5 rounded-lg font-bold transition shadow-lg cursor-pointer">
             🔥 BẬT ĐÈN KHÒ
           </button>
           <button id="m3-stop-btn" onclick="stopM3Torch()" disabled class="bg-slate-700 text-slate-400 px-5 py-2.5 rounded-lg font-bold transition shadow-lg cursor-not-allowed">
@@ -173,7 +175,7 @@
           <span id="m4-slider-val" class="text-2xl font-bold text-cyan-400">0.10</span> m
         </div>
         <input type="range" id="m4-slider" min="0.05" max="0.80" step="0.05" value="0.10" class="w-full accent-cyan-400 mb-6 cursor-pointer" oninput="updateM4Slider(this.value)">
-        <button onclick="submitStage4()" class="bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-3 rounded-lg font-bold transition shadow-lg w-full">
+        <button onclick="submitStage4()" class="bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-3 rounded-lg font-bold transition shadow-lg w-full cursor-pointer">
           CẮT LASER & GẤP THÙNG
         </button>
       </div>
@@ -198,7 +200,7 @@
           <label class="block text-xs text-slate-400 mb-1">Giá trị lớn nhất Max f(x) trên [0, 3]:</label>
           <input type="number" id="m5-in-3" step="0.1" class="w-full bg-slate-950 border border-cyan-500 text-cyan-300 p-2.5 rounded text-center font-bold outline-none">
         </div>
-        <button onclick="submitStage5()" class="bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-3 rounded-lg font-bold transition shadow-lg w-full mt-2">
+        <button onclick="submitStage5()" class="bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-3 rounded-lg font-bold transition shadow-lg w-full mt-2 cursor-pointer">
           MỞ CỬA THOÁT HIỂM
         </button>
       </div>
@@ -223,10 +225,10 @@
       </div>
 
       <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <button onclick="downloadCertificate()" class="bg-cyan-600 hover:bg-cyan-500 text-white px-5 py-2.5 rounded-lg font-bold transition shadow-lg flex items-center justify-center gap-2">
+        <button onclick="downloadCertificate()" class="bg-cyan-600 hover:bg-cyan-500 text-white px-5 py-2.5 rounded-lg font-bold transition shadow-lg flex items-center justify-center gap-2 cursor-pointer">
           📥 TẢI ẢNH CHỨNG NHẬN
         </button>
-        <button onclick="location.reload()" class="bg-slate-800 hover:bg-slate-700 text-cyan-400 px-5 py-2.5 rounded-lg font-bold transition border border-cyan-500/40">
+        <button onclick="location.reload()" class="bg-slate-800 hover:bg-slate-700 text-cyan-400 px-5 py-2.5 rounded-lg font-bold transition border border-cyan-500/40 cursor-pointer">
           🔄 CHƠI LẠI TỪ ĐẦU
         </button>
       </div>
@@ -360,16 +362,15 @@
 
     // Khởi tạo các màn chơi với số liệu Random
     function initStages() {
-      // Màn 1
-      const multM1 = [5, 8, 10, 12, 15][Math.floor(Math.random() * 5)];
-      state.m1.m = multM1 * 89;
+      // Màn 1 (Chọn ngẫu nhiên các mỡ phổ biến sao cho ra số đẹp)
+      const possibleM1 = [445, 712, 890, 1068, 1335];
+      state.m1.m = possibleM1[Math.floor(Math.random() * possibleM1.length)];
       state.m1.target = (state.m1.m * 120) / 89;
       document.getElementById('m1-mass').innerText = state.m1.m;
 
       // Màn 2
       state.m2.mass = [5, 10, 15][Math.floor(Math.random() * 3)];
       state.m2.t1 = [380, 400, 420][Math.floor(Math.random() * 3)];
-      // Q_tỏa = m_Cu * 380 * (t_Cu - 47) = m_Nước * 4180 * 27
       const tCuC = state.m2.t1 - 273;
       state.m2.targetWater = parseFloat(((state.m2.mass * 380 * (tCuC - 47)) / (4180 * 27)).toFixed(1));
       document.getElementById('m2-copper-mass').innerText = state.m2.mass;
@@ -377,7 +378,7 @@
 
       // Màn 3
       state.m3.mass = [0.4, 0.5, 0.6][Math.floor(Math.random() * 3)];
-      state.m3.targetTime = state.m3.mass * 64; // (m * 130 * 300 + m * 25000) / 1000 = 64 * m
+      state.m3.targetTime = state.m3.mass * 64; 
       document.getElementById('m3-mass').innerText = state.m3.mass;
 
       // Màn 4
@@ -388,9 +389,9 @@
       slider4.max = (state.m4.side / 2 - 0.1).toFixed(2);
 
       // Màn 5 (Cố định hàm đơn giản y = x^3 - 3x^2 + 2)
-      state.m5.x1 = 0; // Cực đại tại x = 0
-      state.m5.x2 = 2; // Cực tiểu tại x = 2
-      state.m5.maxVal = 2; // Max trên [0, 3] là tại x = 0 hoặc x = 3 -> f(3) = 27 - 27 + 2 = 2
+      state.m5.x1 = 0; 
+      state.m5.x2 = 2; 
+      state.m5.maxVal = 2; 
     }
 
     // Chuyển màn
@@ -559,6 +560,5 @@
       speakMinhAnh('neutral', "Hệ thống đã tạo dữ liệu ngẫu nhiên cho 5 màn! Chúc cậu phá đảo thành công.");
     };
   </script>
-
-<FollowUp label="Bạn có muốn tôi giải thích chi tiết cách viết thuật toán hoặc tùy biến thêm tính năng nào khác không?" query="Hãy giải thích chi tiết cách hoạt động của các thuật toán trong mã nguồn game LAB ZERO ESCAPE."/></body>
+</body>
 </html>
