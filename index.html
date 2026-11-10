@@ -351,7 +351,7 @@
       document.getElementById('hint-count').innerText = state.hintsLeft;
       
       const hints = [
-        "Màn 1: Số mol NaOH gấp 3 lần số mol Tristearin. m_NaOH = (m * 120) / 89.",
+        "Màn 1: Số mol NaOH gấp 3 lần số mol Tristearin. m_NaOH = (m * 12) / 89.",
         "Màn 2: Áp dụng phương trình cân bằng nhiệt Q_tỏa = Q_thu để tính khối lượng nước.",
         "Màn 3: Q = m*c*Δt + m*λ. Thời gian t = Q / P (với P = 1000W).",
         "Màn 4: Thể tích lớn nhất khi x = a / 6.",
@@ -362,10 +362,10 @@
 
     // Khởi tạo các màn chơi với số liệu Random
     function initStages() {
-      // Màn 1 (Chọn ngẫu nhiên các mỡ phổ biến sao cho ra số đẹp)
+      // Màn 1 (Đã sửa lại công thức chia đúng cho 890)
       const possibleM1 = [445, 712, 890, 1068, 1335];
       state.m1.m = possibleM1[Math.floor(Math.random() * possibleM1.length)];
-      state.m1.target = (state.m1.m * 120) / 89;
+      state.m1.target = (state.m1.m * 12) / 89; // Sửa từ 120 thành 12
       document.getElementById('m1-mass').innerText = state.m1.m;
 
       // Màn 2
